@@ -1,0 +1,15 @@
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.message {
+  margin: 24px 0;
+  text-align: center;
+}
+
+.sentinel {
+  height: 1px;
+}

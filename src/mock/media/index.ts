@@ -1,0 +1,1 @@
+export { mediaMockApi } from './mediaMockApi';

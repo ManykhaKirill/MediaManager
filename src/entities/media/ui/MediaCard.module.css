@@ -1,0 +1,70 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #d9dde5;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.preview {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #f2f4f7;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder {
+  color: #667085;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.content {
+  padding: 14px;
+}
+
+.name {
+  overflow: hidden;
+  margin: 0 0 10px;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #667085;
+  font-size: 13px;
+}
+
+.badge {
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: #eef2ff;
+  color: #3448c5;
+  text-transform: capitalize;
+}
+
+.removeButton {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(0 0 0 / 60%);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+}
