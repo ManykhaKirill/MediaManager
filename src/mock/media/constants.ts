@@ -6,7 +6,7 @@ export const MEDIA_TYPES = [
   'document'
 ] satisfies readonly MediaType[];
 
-export const PAGE_SIZE = 20;
+export const PAGE_SIZE = 12;
 
 export const INITIAL_ITEMS_COUNT = 60;
 

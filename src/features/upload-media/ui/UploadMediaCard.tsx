@@ -1,9 +1,6 @@
-import type {
-  UploadStatus,
-  UploadTask
-} from '../model/types'
-
-import styles from './UploadMediaCard.module.css'
+import type { UploadStatus, UploadTask } from '../model/types';
+import { getMediaType } from '../lib/getMediaType';
+import styles from './UploadMediaCard.module.css';
 
 interface UploadMediaCardProps {
   task: UploadTask
@@ -24,17 +21,9 @@ function formatFileSize(
   return `${(bytes / 1024).toFixed(1)} KB`
 }
 
-function getMediaType(
-  fileType: string
-): 'image' | 'video' {
-  return fileType.startsWith('video/')
-    ? 'video'
-    : 'image'
-}
-
 function getStatusLabel(
   status: UploadStatus
-): string {
+) {
   switch (status) {
     case 'invalid':
       return 'Invalid'
@@ -51,8 +40,6 @@ function getStatusLabel(
     case 'error':
       return 'Error'
 
-    case 'cancelled':
-      return 'Cancelled'
   }
 }
 
@@ -66,9 +53,6 @@ function getStatusClassName(
 
     case 'pending':
       return styles.pendingBadge
-
-    case 'cancelled':
-      return styles.cancelledBadge
 
     case 'preparing':
     case 'uploading':

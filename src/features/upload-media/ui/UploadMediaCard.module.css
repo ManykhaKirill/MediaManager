@@ -116,10 +116,6 @@
   background: rgb(180 35 24 / 90%);
 }
 
-.cancelledBadge {
-  background: rgb(71 84 103 / 90%);
-}
-
 .progressBlock {
   display: grid;
   gap: 5px;

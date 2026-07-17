@@ -3,7 +3,6 @@ export type UploadStatus =
   | 'pending'
   | 'uploading'
   | 'error'
-  | 'cancelled'
   | 'invalid'
 
 export interface UploadTask {

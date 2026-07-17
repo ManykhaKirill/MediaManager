@@ -15,6 +15,7 @@ export default defineConfig({
       "@pages": path.resolve(_dirname, "./src/pages"),
       "@shared": path.resolve(_dirname, "./src/shared"),
       "@widgets": path.resolve(_dirname, "./src/widgets"),
+      "@mock": path.resolve(_dirname, "./src/mock"),
     },
   },
   plugins: [react()],
