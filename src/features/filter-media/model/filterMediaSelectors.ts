@@ -45,10 +45,7 @@ export const selectVisibleMedia =
           return b.size - a.size;
         }
 
-        return (
-          new Date(b.createdAt).getTime() -
-          new Date(a.createdAt).getTime()
-        );
+        return b.createdAt.localeCompare(a.createdAt);
       });
     },
   );

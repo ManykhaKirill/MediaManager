@@ -11,7 +11,7 @@ import {
 import {
   fetchNextMediaPage,
   MediaCard,
-  removeMedia,
+  deleteMedia,
   selectAllMedia,
   selectHasMoreMedia,
   selectMediaPageRequest
@@ -179,7 +179,7 @@ export function MediaGallery() {
               item={item}
               onRemove={id => {
                 dispatch(
-                  removeMedia(id)
+                  deleteMedia(id)
                 )
               }}
             />
