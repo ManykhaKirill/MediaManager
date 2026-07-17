@@ -1,10 +1,7 @@
-import { type MediaItem } from "@entities/media";
+import { INITIAL_ITEMS_COUNT, PAGE_SIZE } from './constants';
+import { generateMedia } from './generator';
 
-import { generateMedia } from "./generator";
-
-const PAGE_SIZE = 20;
-
-const media = generateMedia(60);
+const media = generateMedia(INITIAL_ITEMS_COUNT);
 
 export const database = {
   getPage(page: number) {
@@ -14,27 +11,11 @@ export const database = {
 
     return {
       items: media.slice(start, end),
-
       nextPage:
         end < media.length
           ? page + 1
           : null,
-
-      total: media.length,
-    };
-  },
-
-  add(item: MediaItem) {
-    media.unshift(item);
-  },
-
-  remove(id: string) {
-    const index = media.findIndex(
-      (item) => item.id === id,
-    );
-
-    if (index !== -1) {
-      media.splice(index, 1);
+      total: media.length
     }
-  },
-};
+  }
+}
