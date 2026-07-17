@@ -1,8 +1,8 @@
 import { type MediaApi } from '@entities/media';
+import { FETCH_FAILURE_RATE, UPLOAD_FAILURE_RATE } from './constants';
 import { database } from './database';
 
-const FETCH_FAILURE_RATE = 0.50;
-const UPLOAD_FAILURE_RATE = 0.2;
+
 
 function sleep(ms: number): Promise<void> {
   return new Promise(resolve => {
