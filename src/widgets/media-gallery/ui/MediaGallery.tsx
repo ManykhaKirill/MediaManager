@@ -1,6 +1,13 @@
-import { useEffect, useRef } from 'react'
+import {
+  useEffect,
+  useRef
+} from 'react'
 
-import { useAppDispatch, useAppSelector } from '@app/store/hooks'
+import {
+  useAppDispatch,
+  useAppSelector
+} from '@app/store/hooks'
+
 import {
   fetchNextMediaPage,
   MediaCard,
@@ -9,46 +16,95 @@ import {
   selectHasMoreMedia,
   selectMediaPageRequest
 } from '@entities/media'
-import { selectHasActiveMediaFilters, selectVisibleMedia } from '@features/filter-media'
+
+import {
+  selectHasActiveMediaFilters,
+  selectVisibleMedia
+} from '@features/filter-media'
+
+import {
+  cancelUpload,
+  retryUpload,
+  selectAllUploadTasks,
+  UploadMediaCard
+} from '@features/upload-media'
 
 import styles from './MediaGallery.module.css'
 
 export function MediaGallery() {
   const dispatch = useAppDispatch()
 
-  const allMedia = useAppSelector(selectAllMedia)
-  const visibleMedia = useAppSelector(selectVisibleMedia)
-  const hasMore = useAppSelector(selectHasMoreMedia)
-  const request = useAppSelector(selectMediaPageRequest)
-  const hasActiveFilters = useAppSelector(selectHasActiveMediaFilters)
+  const allMedia = useAppSelector(
+    selectAllMedia
+  )
 
-  const sentinelRef = useRef<HTMLDivElement | null>(null)
+  const visibleMedia = useAppSelector(
+    selectVisibleMedia
+  )
+
+  const uploadTasks = useAppSelector(
+    selectAllUploadTasks
+  )
+
+  const hasMore = useAppSelector(
+    selectHasMoreMedia
+  )
+
+  const request = useAppSelector(
+    selectMediaPageRequest
+  )
+
+  const hasActiveFilters = useAppSelector(
+    selectHasActiveMediaFilters
+  )
+
+  const sentinelRef =
+    useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    if (allMedia.length === 0 && request.status === 'idle') {
-      void dispatch(fetchNextMediaPage())
+    if (
+      allMedia.length === 0 &&
+      request.status === 'idle'
+    ) {
+      void dispatch(
+        fetchNextMediaPage()
+      )
     }
-  }, [dispatch, allMedia.length, request.status])
+  }, [
+    dispatch,
+    allMedia.length,
+    request.status
+  ])
 
   useEffect(() => {
-    const sentinel = sentinelRef.current
+    const sentinel =
+      sentinelRef.current
 
-    if (!sentinel || !hasMore 
-      || allMedia.length === 0 
-      || request.status === 'error'
-    ) { 
-      return 
+    if (
+      !sentinel ||
+      !hasMore ||
+      allMedia.length === 0 ||
+      request.status === 'error'
+    ) {
+      return
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (
-          entry?.isIntersecting &&
-          request.status === 'success'
-        ) {
-          void dispatch(fetchNextMediaPage())
+    const observer =
+      new IntersectionObserver(
+        ([entry]) => {
+          if (
+            entry?.isIntersecting &&
+            request.status === 'success'
+          ) {
+            void dispatch(
+              fetchNextMediaPage()
+            )
+          }
+        },
+        {
+          rootMargin: '300px 0px'
         }
-      }, { rootMargin: '300px 0px' });
+      )
 
     observer.observe(sentinel)
 
@@ -73,6 +129,7 @@ export function MediaGallery() {
   const isCollectionEmpty =
     request.status === 'success' &&
     allMedia.length === 0 &&
+    uploadTasks.length === 0 &&
     !hasActiveFilters
 
   const hasNoFilterResults =
@@ -91,16 +148,39 @@ export function MediaGallery() {
     allMedia.length > 0 &&
     request.status === 'success'
 
+  const hasGalleryItems =
+    uploadTasks.length > 0 ||
+    visibleMedia.length > 0
+
   return (
     <section>
-      {visibleMedia.length > 0 && (
+      {hasGalleryItems && (
         <div className={styles.grid}>
+          {uploadTasks.map(task => (
+            <UploadMediaCard
+              key={task.id}
+              task={task}
+              onRemove={id => {
+                void dispatch(
+                  cancelUpload(id)
+                )
+              }}
+              onRetry={id => {
+                void dispatch(
+                  retryUpload(id)
+                )
+              }}
+            />
+          ))}
+
           {visibleMedia.map(item => (
             <MediaCard
               key={item.id}
               item={item}
               onRemove={id => {
-                dispatch(removeMedia(id))
+                dispatch(
+                  removeMedia(id)
+                )
               }}
             />
           ))}
@@ -147,7 +227,9 @@ export function MediaGallery() {
           <button
             type="button"
             onClick={() => {
-              void dispatch(fetchNextMediaPage())
+              void dispatch(
+                fetchNextMediaPage()
+              )
             }}
           >
             Retry

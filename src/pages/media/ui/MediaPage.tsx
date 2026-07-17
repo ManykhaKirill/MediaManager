@@ -1,5 +1,6 @@
 import { MediaGallery } from '@widgets/media-gallery';
 import { MediaFilters } from '@features/filter-media';
+import { UploadMedia } from '@features/upload-media';
 
 export function MediaPage() {
   return (
@@ -8,6 +9,7 @@ export function MediaPage() {
         <h1>Media Collection Manager</h1>
         <p>Browse and manage your media collection.</p>
       </header>
+      <UploadMedia />
       <MediaFilters />
       <MediaGallery />
     </main>

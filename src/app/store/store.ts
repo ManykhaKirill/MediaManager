@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { mediaReducer } from '@entities/media';
 import { filterMediaReducer } from '@features/filter-media';
+import { uploadReducer } from '@features/upload-media';
 
 export const store = configureStore({
   reducer: {
     media: mediaReducer,
-    filterMedia: filterMediaReducer
+    filterMedia: filterMediaReducer,
+    uploadMedia: uploadReducer
   },
 });
 

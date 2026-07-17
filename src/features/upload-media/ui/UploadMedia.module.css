@@ -1,0 +1,275 @@
+.container {
+  margin-bottom: 32px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.heading {
+  margin: 0;
+  color: #101828;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.subtitle {
+  margin: 3px 0 0;
+  color: #667085;
+  font-size: 14px;
+}
+
+.addButton {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #3448c5;
+  border-radius: 9px;
+  padding: 9px 16px;
+  background: #3448c5;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    transform 150ms ease;
+}
+
+.addButton:hover {
+  border-color: #293da9;
+  background: #293da9;
+}
+
+.addButton:active {
+  transform: translateY(1px);
+}
+
+.addButton:focus-visible {
+  outline: 3px solid rgb(52 72 197 / 20%);
+  outline-offset: 2px;
+}
+
+.addIcon {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.panel {
+  margin-bottom: 16px;
+  border: 1px solid #e4e7ec;
+  border-radius: 14px;
+  padding: 8px;
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgb(16 24 40 / 4%),
+    0 4px 12px rgb(16 24 40 / 4%);
+}
+
+.dropZone {
+  display: flex;
+  min-height: 130px;
+  align-items: center;
+  gap: 18px;
+  border: 1.5px dashed #cfd4dc;
+  border-radius: 10px;
+  padding: 22px;
+  background: #fafbfc;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.dragging {
+  border-color: #3448c5;
+  background: #eef2ff;
+}
+
+.input {
+  display: none;
+}
+
+.uploadIcon {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid #dfe3ff;
+  border-radius: 12px;
+  background: #eef2ff;
+  color: #3448c5;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.dropContent {
+  min-width: 0;
+  flex: 1;
+}
+
+.title {
+  margin: 0;
+  color: #101828;
+  font-weight: 600;
+}
+
+.description {
+  margin: 5px 0 0;
+  color: #667085;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.browseButton {
+  min-height: 40px;
+  flex: 0 0 auto;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 8px 14px;
+  background: #fff;
+  color: #344054;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.browseButton:hover {
+  border-color: #98a2b3;
+  background: #f9fafb;
+}
+
+.limitError {
+  margin: 12px 0 0;
+  border: 1px solid #fecdca;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #fef3f2;
+  color: #b42318;
+  font-size: 14px;
+}
+
+.fileList {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #eaecf0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(16 24 40 / 3%);
+}
+
+.fileIcon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 9px;
+  background: #f2f4f7;
+  color: #475467;
+  font-size: 15px;
+}
+
+.fileDetails {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 12px;
+  row-gap: 3px;
+}
+
+.fileDetails strong {
+  overflow: hidden;
+  color: #101828;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileSize {
+  color: #667085;
+  font-size: 13px;
+}
+
+.error,
+.preparing,
+.valid {
+  grid-column: 1 / -1;
+  font-size: 13px;
+}
+
+.error {
+  color: #b42318;
+}
+
+.valid {
+  color: #067647;
+}
+
+.preparing {
+  color: #475467;
+}
+
+.removeButton {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #667085;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.removeButton:hover {
+  background: #f2f4f7;
+  color: #101828;
+}
+
+@media (max-width: 640px) {
+  .header {
+    align-items: flex-start;
+  }
+
+  .dropZone {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .uploadIcon {
+    margin: 0 auto;
+  }
+
+  .browseButton {
+    width: 100%;
+  }
+
+  .fileDetails {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fileSize {
+    grid-column: 1;
+  }
+}
