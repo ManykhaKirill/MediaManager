@@ -1,47 +1,32 @@
-import type {
-  AppDispatch,
-  RootState
-} from '@app/store/store'
+import type { AppDispatch, RootState } from '@app/store/store';
 
-import { removeMedia } from './mediaSlice'
+import { removeMedia } from './mediaSlice';
 
 function revokeBlobUrl(
   url: string | null | undefined
 ): void {
-  if (
-    url &&
-    url.startsWith('blob:')
-  ) {
+  if (url && url.startsWith('blob:')) {
     URL.revokeObjectURL(url)
   }
 }
 
-export function deleteMedia(
-  id: string
-) {
+export function deleteMedia(id: string) {
   return (
     dispatch: AppDispatch,
     getState: () => RootState
   ): void => {
-    const media =
-      getState().media.entities[id]
+    const media = getState().media.entities[id];
 
     if (!media) {
-      return
+      return;
     }
 
-    revokeBlobUrl(media.url)
+    revokeBlobUrl(media.url);
 
-    if (
-      media.thumbnailUrl !== media.url
-    ) {
-      revokeBlobUrl(
-        media.thumbnailUrl
-      )
+    if (media.thumbnailUrl !== media.url) {
+      revokeBlobUrl(media.thumbnailUrl);
     }
 
-    dispatch(
-      removeMedia(id)
-    )
+    dispatch(removeMedia(id));
   }
 }

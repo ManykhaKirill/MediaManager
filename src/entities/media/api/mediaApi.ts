@@ -7,15 +7,14 @@ export interface FetchMediaResponse {
 }
 
 export interface UploadResult {
-  item: MediaItem;
+  url: string
 }
 
 export interface MediaApi {
-  fetchMediaPage(page: number): Promise<FetchMediaResponse>;
-
+  fetchMediaPage(page: number): Promise<FetchMediaResponse>
   uploadFile(
     file: File,
     onProgress: (progress: number) => void,
-    signal?: AbortSignal,
-  ): Promise<UploadResult>;
+    signal: AbortSignal
+  ): Promise<UploadResult>
 }

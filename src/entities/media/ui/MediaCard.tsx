@@ -44,20 +44,6 @@ export function MediaCard({
           alt=""
           className={styles.image}
         />
-
-        {item.uploadStatus !== 'done' && (
-          <span
-            className={`${styles.uploadBadge} ${
-              item.uploadStatus === 'error'
-                ? styles.errorBadge
-                : styles.uploadingBadge
-            }`}
-          >
-            {item.uploadStatus === 'uploading'
-              ? 'Uploading'
-              : 'Error'}
-          </span>
-        )}
       </div>
 
       <div className={styles.content}>
@@ -77,24 +63,6 @@ export function MediaCard({
             {formatFileSize(item.size)}
           </span>
         </div>
-
-        {item.uploadStatus === 'uploading' && (
-          <div className={styles.progressBlock}>
-            <div className={styles.progressHeader}>
-              <span>Uploading</span>
-
-              <span>
-                {item.uploadProgress}%
-              </span>
-            </div>
-
-            <progress
-              className={styles.progress}
-              value={item.uploadProgress}
-              max={100}
-            />
-          </div>
-        )}
       </div>
     </article>
   );

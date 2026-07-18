@@ -42,22 +42,9 @@ function createMediaItem(index: number): MediaItem {
     size:
       150_000 +
       index * 137_421,
-    createdAt: new Date(
-      Date.now() -
-        index *
-          6 *
-          60 *
-          60 *
-          1000
-    ).toISOString(),
+    createdAt: new Date(Date.now() - index * 6 * 60 * 60 * 1000).toISOString(),
     url: '',
-    thumbnailUrl:
-      createMockThumbnail(
-        type,
-        name
-      ),
-    uploadStatus: 'done',
-    uploadProgress: 100
+    thumbnailUrl: createMockThumbnail(type, name)
   }
 }
 
