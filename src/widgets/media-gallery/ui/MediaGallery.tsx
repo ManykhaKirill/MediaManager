@@ -135,6 +135,7 @@ export function MediaGallery() {
   const hasNoFilterResults =
     allMedia.length > 0 &&
     visibleMedia.length === 0 &&
+    uploadTasks.length === 0 &&
     hasActiveFilters
 
   const isEndOfList =
