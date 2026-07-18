@@ -1,17 +1,9 @@
-import {
-  createSlice,
-  type PayloadAction,
-} from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 import type { MediaType } from '@entities/media';
 
-export type MediaTypeFilter =
-  | 'all'
-  | MediaType;
-
-export type MediaSort =
-  | 'date'
-  | 'size';
+export type MediaTypeFilter = 'all' | MediaType;
+export type MediaSort = 'date' | 'size';
 
 interface FilterMediaState {
   type: MediaTypeFilter;
@@ -55,7 +47,7 @@ const filterMediaSlice = createSlice({
 export const {
   setMediaTypeFilter,
   setMediaSort,
-  setMediaSearch,
+  setMediaSearch
 } = filterMediaSlice.actions;
 
 export const filterMediaReducer = filterMediaSlice.reducer;
