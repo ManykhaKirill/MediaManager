@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'node:path'
-import url from 'node:url'
+import path from 'node:path';
+import url from 'node:url';
 
-const _dirname = path.dirname(url.fileURLToPath(import.meta.url))
+const _dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 export default defineConfig({
   resolve: {
