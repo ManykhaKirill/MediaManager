@@ -66,9 +66,26 @@
 }
 
 .removeButton {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  right: 8px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  width: 28px;
+  height: 28px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: rgb(0 0 0 / 60%);
+  color: #ffffff;
+
+  cursor: pointer;
 }
 
 .removeButton:hover {

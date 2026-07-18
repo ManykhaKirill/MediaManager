@@ -83,10 +83,7 @@ export function startUpload(id: string) {
           createdAt:
             new Date().toISOString(),
           url: result.url,
-          thumbnailUrl:
-            currentTask.thumbnailUrl,
-          uploadStatus: 'done',
-          uploadProgress: 100
+          thumbnailUrl: currentTask.thumbnailUrl
         })
       )
 
