@@ -1,7 +1,4 @@
-import type {
-  AppDispatch,
-  RootState
-} from '@app/store/store';
+import type { AppDispatch, RootState } from '@app/store/store';
 import { generateThumbnail } from '../lib/generateThumbnail';
 import { cacheThumbnail, getCachedThumbnail } from '../lib/thumbnailCache';
 import { registerThumbnailController, removeThumbnailController } from './thumbnailControllersRegistry';
@@ -14,8 +11,7 @@ export function prepareUpload(id: string) {
     dispatch: AppDispatch,
     getState: () => RootState
   ): Promise<void> => {
-    const task =
-      getState().uploadMedia.entities[id]
+    const task = getState().uploadMedia.entities[id];
 
     if (!task || task.status !== 'preparing') {
       return;
@@ -24,15 +20,8 @@ export function prepareUpload(id: string) {
     const file = getUploadFile(id);
 
     if (!file) {
-      dispatch(
-        setUploadPreparationFailed({
-          id,
-          message:
-            'File is no longer available'
-        })
-      )
-
-      return
+      dispatch(setUploadPreparationFailed({ id, message: 'File is no longer available' }));
+      return;
     }
 
     const controller = new AbortController();
@@ -42,14 +31,20 @@ export function prepareUpload(id: string) {
     let thumbnailUrl: string | null = null;
 
     try {
-      let thumbnailBlob = await getCachedThumbnail(file);
+      let thumbnailBlob: Blob | null = null;
+
+      try {
+        thumbnailBlob = await getCachedThumbnail(file);
+      } catch {
+        thumbnailBlob = null;
+      }
 
       if (controller.signal.aborted) {
-        return
+        return;
       }
 
       if (!thumbnailBlob) {
-         thumbnailBlob = await generateThumbnail(file, controller.signal);
+        thumbnailBlob = await generateThumbnail(file, controller.signal);
 
         if (controller.signal.aborted) {
           return;
@@ -57,9 +52,9 @@ export function prepareUpload(id: string) {
 
         try {
           await cacheThumbnail(file, thumbnailBlob);
-        } catch (error) {
-            console.warn('Failed to cache thumbnail', error);
-          }
+        } catch {
+          // Cache failure must not block upload.
+        }
       }
 
       const currentTask = getState().uploadMedia.entities[id];
@@ -74,7 +69,7 @@ export function prepareUpload(id: string) {
 
       thumbnailUrl = URL.createObjectURL(thumbnailBlob);
 
-      const latestTask = getState().uploadMedia.entities[id]
+      const latestTask = getState().uploadMedia.entities[id];
 
       if (
         !latestTask ||
@@ -86,9 +81,10 @@ export function prepareUpload(id: string) {
         return;
       }
 
-      dispatch(setUploadPrepared({ id,thumbnailUrl }));
+      dispatch(setUploadPrepared({id, thumbnailUrl}));
 
       thumbnailUrl = null;
+
       await dispatch(startUpload(id));
     } catch (error) {
       if (thumbnailUrl) {
@@ -116,9 +112,9 @@ export function prepareUpload(id: string) {
               ? error.message
               : 'Failed to generate thumbnail'
         })
-      )
+      );
     } finally {
       removeThumbnailController(id);
     }
-  }
+  };
 }

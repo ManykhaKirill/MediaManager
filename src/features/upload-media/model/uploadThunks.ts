@@ -11,6 +11,12 @@ import {
 } from './uploadSlice';
 import { getMediaType } from '../lib/getMediaType';
 
+function revokeBlobUrl(url: string): void {
+  if (url.startsWith('blob:')) {
+    URL.revokeObjectURL(url);
+  }
+}
+
 export function startUpload(id: string) {
   return async (
     dispatch: AppDispatch,
@@ -57,12 +63,12 @@ export function startUpload(id: string) {
       const currentTask = getState().uploadMedia.entities[id];
 
       if (!currentTask || currentTask.status !== 'uploading') {
-        URL.revokeObjectURL(result.url);
+        revokeBlobUrl(result.url);
         return;
       }
 
       if (!currentTask.thumbnailUrl) {
-        URL.revokeObjectURL(result.url);
+        revokeBlobUrl(result.url);
 
         dispatch(setUploadFailed({id, message: 'Thumbnail is not available'}));
         return;
