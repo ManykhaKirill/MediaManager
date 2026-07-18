@@ -15,6 +15,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 0;
   color: #475467;
   font-size: 13px;
   font-weight: 600;
@@ -22,18 +23,51 @@
 
 .field input,
 .field select {
+  width: 100%;
   min-height: 42px;
+  box-sizing: border-box;
   border: 1px solid #d0d5dd;
   border-radius: 8px;
-  padding: 0 12px;
-  background: #ffffff;
+  background-color: #ffffff;
   color: #101828;
+  font: inherit;
+  font-weight: 400;
+}
+
+.field input {
+  padding: 0 12px;
+}
+
+.field select {
+  padding: 0 42px 0 12px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .field input:focus,
 .field select:focus {
   border-color: #6172f3;
   outline: 2px solid rgb(97 114 243 / 18%);
+}
+
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.selectIcon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  color: #667085;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.selectWrapper:focus-within .selectIcon {
+  color: #6172f3;
 }
 
 @media (max-width: 720px) {

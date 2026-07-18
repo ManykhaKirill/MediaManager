@@ -1,21 +1,21 @@
 import type { MediaItem } from '../types/media';
 
+import { Icon } from '@shared/ui/icon';
 import styles from './MediaCard.module.css';
 
 interface MediaCardProps {
-  item: MediaItem
-  onRemove: (id: string) => void
+  item: MediaItem;
+  onRemove: (id: string) => void;
 }
 
 function formatFileSize(bytes: number): string {
-  const megabytes =
-    bytes / 1024 / 1024
+  const megabytes = bytes / 1024 / 1024;
 
   if (megabytes >= 1) {
-    return `${megabytes.toFixed(1)} MB`
+    return `${megabytes.toFixed(1)} MB`;
   }
 
-  return `${(bytes / 1024).toFixed(1)} KB`
+  return `${(bytes / 1024).toFixed(1)} KB`;
 }
 
 export function MediaCard({
@@ -29,10 +29,13 @@ export function MediaCard({
         className={styles.removeButton}
         aria-label={`Remove ${item.name}`}
         onClick={() => {
-          onRemove(item.id)
+          onRemove(item.id);
         }}
       >
-        ×
+        <Icon
+          name="close"
+          size={18}
+        />
       </button>
 
       <div className={styles.preview}>
@@ -94,5 +97,5 @@ export function MediaCard({
         )}
       </div>
     </article>
-  )
+  );
 }

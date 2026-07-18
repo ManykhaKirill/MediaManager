@@ -1,6 +1,7 @@
 import type { UploadStatus, UploadTask } from '../model/types';
 import { getMediaType } from '../lib/getMediaType';
 import styles from './UploadMediaCard.module.css';
+import { Icon } from '@shared/ui/icon';
 
 interface UploadMediaCardProps {
   task: UploadTask
@@ -84,7 +85,10 @@ export function UploadMediaCard({
           onRemove(task.id)
         }}
       >
-        ×
+        <Icon
+          name="close"
+          size={18}
+        />
       </button>
 
       <div className={styles.preview}>
@@ -99,15 +103,17 @@ export function UploadMediaCard({
             className={styles.placeholder}
             aria-hidden="true"
           >
-            <span
+            <Icon
+              name={
+                mediaType === 'video'
+                  ? 'video'
+                  : 'image'
+              }
+              size={28}
               className={
                 styles.placeholderIcon
               }
-            >
-              {mediaType === 'video'
-                ? '▶'
-                : '▧'}
-            </span>
+            />
 
             <span>
               {task.status === 'preparing'

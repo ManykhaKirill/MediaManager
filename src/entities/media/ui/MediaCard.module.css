@@ -59,6 +59,9 @@
   z-index: 1;
   top: 8px;
   right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 28px;
   height: 28px;
   border: 0;
@@ -66,8 +69,6 @@
   background: rgb(0 0 0 / 60%);
   color: #ffffff;
   cursor: pointer;
-  font-size: 20px;
-  line-height: 1;
 }
 
 .uploadBadge {

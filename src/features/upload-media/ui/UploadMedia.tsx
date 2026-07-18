@@ -27,7 +27,8 @@ import {
   prepareUpload
 } from '../model/prepareUploadThunks'
 
-import styles from './UploadMedia.module.css'
+import { Icon } from '@shared/ui/icon';
+import styles from './UploadMedia.module.css';
 
 export function UploadMedia() {
   const dispatch = useAppDispatch()
@@ -200,14 +201,15 @@ export function UploadMedia() {
           aria-controls="media-upload-panel"
           onClick={toggleUploadPanel}
         >
-          <span
+          <Icon
+            name={
+              isUploadPanelOpen
+                ? 'close'
+                : 'add'
+            }
+            size={18}
             className={styles.addIcon}
-            aria-hidden="true"
-          >
-            {isUploadPanelOpen
-              ? '×'
-              : '+'}
-          </span>
+          />
 
           {isUploadPanelOpen
             ? 'Close'
@@ -239,12 +241,11 @@ export function UploadMedia() {
               onChange={handleInputChange}
             />
 
-            <div
+            <Icon
+              name="upload"
+              size={32}
               className={styles.uploadIcon}
-              aria-hidden="true"
-            >
-              ↑
-            </div>
+            />
 
             <div className={styles.dropContent}>
               <p className={styles.title}>
@@ -286,16 +287,15 @@ export function UploadMedia() {
               key={task.id}
               className={styles.fileItem}
             >
-              <div
+              <Icon
+                name={
+                  task.fileType.startsWith('video/')
+                    ? 'video'
+                    : 'image'
+                }
+                size={20}
                 className={styles.fileIcon}
-                aria-hidden="true"
-              >
-                {task.fileType.startsWith(
-                  'video/'
-                )
-                  ? '▶'
-                  : '▧'}
-              </div>
+              />
 
               <div
                 className={styles.fileDetails}
@@ -350,7 +350,10 @@ export function UploadMedia() {
                   handleRemoveTask(task.id)
                 }}
               >
-                ×
+                <Icon
+                  name="close"
+                  size={18}
+                />
               </button>
             </li>
           ))}
