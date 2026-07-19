@@ -1,0 +1,57 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  role="img"
+  aria-label="Media Collection Manager"
+>
+  <defs>
+    <linearGradient id="background" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F7DF3"/>
+      <stop offset="1" stop-color="#6B4FD8"/>
+    </linearGradient>
+  </defs>
+
+  <rect
+    x="4"
+    y="4"
+    width="56"
+    height="56"
+    rx="14"
+    fill="url(#background)"
+  />
+
+  <rect
+    x="15"
+    y="16"
+    width="34"
+    height="28"
+    rx="5"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="4"
+  />
+
+  <circle
+    cx="40"
+    cy="24"
+    r="3.5"
+    fill="#FFFFFF"
+  />
+
+  <path
+    d="M18 40L27 30L34 37L39 32L47 40"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <path
+    d="M25 49H39"
+    stroke="#FFFFFF"
+    stroke-width="4"
+    stroke-linecap="round"
+    opacity="0.9"
+  />
+</svg>
