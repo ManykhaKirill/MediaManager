@@ -24,7 +24,7 @@ export function startUpload(id: string) {
   ): Promise<void> => {
     const task = getState().uploadMedia.entities[id];
 
-    if (!task || task.status !== 'pending') {
+    if (task?.status !== 'pending') {
       return;
     }
 
@@ -52,7 +52,7 @@ export function startUpload(id: string) {
           progress => {
             const currentTask = getState().uploadMedia.entities[id];
 
-            if (!currentTask || currentTask.status !== 'uploading') {
+            if (currentTask?.status !== 'uploading') {
               return;
             }
             dispatch(setUploadProgress({ id, progress }));
@@ -62,7 +62,7 @@ export function startUpload(id: string) {
 
       const currentTask = getState().uploadMedia.entities[id];
 
-      if (!currentTask || currentTask.status !== 'uploading') {
+      if (currentTask?.status !== 'uploading') {
         revokeBlobUrl(result.url);
         return;
       }

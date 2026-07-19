@@ -13,7 +13,7 @@ export function prepareUpload(id: string) {
   ): Promise<void> => {
     const task = getState().uploadMedia.entities[id];
 
-    if (!task || task.status !== 'preparing') {
+    if (task?.status !== 'preparing') {
       return;
     }
 
@@ -59,11 +59,7 @@ export function prepareUpload(id: string) {
 
       const currentTask = getState().uploadMedia.entities[id];
 
-      if (
-        !currentTask ||
-        currentTask.status !== 'preparing' ||
-        controller.signal.aborted
-      ) {
+      if (currentTask?.status !== 'preparing' || controller.signal.aborted) {
         return;
       }
 
@@ -71,11 +67,7 @@ export function prepareUpload(id: string) {
 
       const latestTask = getState().uploadMedia.entities[id];
 
-      if (
-        !latestTask ||
-        latestTask.status !== 'preparing' ||
-        controller.signal.aborted
-      ) {
+      if (latestTask?.status !== 'preparing' || controller.signal.aborted) {
         URL.revokeObjectURL(thumbnailUrl);
         thumbnailUrl = null;
         return;

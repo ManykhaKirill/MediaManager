@@ -5,8 +5,8 @@ import { removeMedia } from './mediaSlice';
 function revokeBlobUrl(
   url: string | null | undefined
 ): void {
-  if (url && url.startsWith('blob:')) {
-    URL.revokeObjectURL(url)
+  if (url?.startsWith('blob:')) {
+    URL.revokeObjectURL(url);
   }
 }
 

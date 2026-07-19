@@ -11,7 +11,7 @@ export function retryUpload(id: string) {
     const task =
       getState().uploadMedia.entities[id]
 
-    if (!task || task.status !== 'error') {
+    if (task?.status !== 'error') {
       return;
     }
 
