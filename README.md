@@ -1,6 +1,6 @@
 # Media Collection Manager
 
-## Loom Walkthrough
+## Walkthrough
 
 Loom video: [Loom-link](https://www.loom.com/share/9f78a6c11c7d4d8c85be7bc016254249)
 
