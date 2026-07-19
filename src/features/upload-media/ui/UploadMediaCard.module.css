@@ -153,16 +153,17 @@
   width: 100%;
   min-height: 36px;
   margin-top: 12px;
-  padding: 8px 12px;
-  border: 1px solid currentColor;
-  border-radius: 6px;
-  background: transparent;
-  font: inherit;
+  border: 1px solid #3448c5;
+  border-radius: 9px;
+  padding: 9px 16px;
+  background: #3448c5;
+  color: #fff;
   cursor: pointer;
 }
 
 .retryButton:hover {
-  background: rgb(0 0 0 / 5%);
+  border-color: #293da9;
+  background: #293da9;
 }
 
 .retryButton:focus-visible {

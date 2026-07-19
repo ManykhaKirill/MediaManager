@@ -13,3 +13,23 @@
 .sentinel {
   height: 1px;
 }
+
+.retryButton {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #3448c5;
+  border-radius: 9px;
+  padding: 9px 16px;
+  background: #3448c5;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.retryButton:hover {
+  border-color: #293da9;
+  background: #293da9;
+}

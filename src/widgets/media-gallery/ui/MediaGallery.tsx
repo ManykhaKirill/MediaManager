@@ -1,13 +1,6 @@
-import {
-  useEffect,
-  useRef
-} from 'react'
+import { useEffect, useRef } from 'react';
 
-import {
-  useAppDispatch,
-  useAppSelector
-} from '@app/store/hooks'
-
+import { useAppDispatch, useAppSelector } from '@app/store/hooks';
 import {
   fetchNextMediaPage,
   MediaCard,
@@ -15,70 +8,35 @@ import {
   selectAllMedia,
   selectHasMoreMedia,
   selectMediaPageRequest
-} from '@entities/media'
-
-import {
-  selectHasActiveMediaFilters,
-  selectVisibleMedia
-} from '@features/filter-media'
-
+} from '@entities/media';
+import { selectHasActiveMediaFilters, selectVisibleMedia } from '@features/filter-media';
 import {
   cancelUpload,
   retryUpload,
   selectAllUploadTasks,
   UploadMediaCard
-} from '@features/upload-media'
-
-import styles from './MediaGallery.module.css'
+} from '@features/upload-media';
+import styles from './MediaGallery.module.css';
 
 export function MediaGallery() {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
-  const allMedia = useAppSelector(
-    selectAllMedia
-  )
-
-  const visibleMedia = useAppSelector(
-    selectVisibleMedia
-  )
-
-  const uploadTasks = useAppSelector(
-    selectAllUploadTasks
-  )
-
-  const hasMore = useAppSelector(
-    selectHasMoreMedia
-  )
-
-  const request = useAppSelector(
-    selectMediaPageRequest
-  )
-
-  const hasActiveFilters = useAppSelector(
-    selectHasActiveMediaFilters
-  )
-
-  const sentinelRef =
-    useRef<HTMLDivElement | null>(null)
+  const allMedia = useAppSelector(selectAllMedia);
+  const visibleMedia = useAppSelector(selectVisibleMedia);
+  const uploadTasks = useAppSelector(selectAllUploadTasks);
+  const hasMore = useAppSelector(selectHasMoreMedia);
+  const request = useAppSelector(selectMediaPageRequest);
+  const hasActiveFilters = useAppSelector(selectHasActiveMediaFilters);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (
-      allMedia.length === 0 &&
-      request.status === 'idle'
-    ) {
-      void dispatch(
-        fetchNextMediaPage()
-      )
+    if (allMedia.length === 0 && request.status === 'idle') {
+      void dispatch(fetchNextMediaPage());
     }
-  }, [
-    dispatch,
-    allMedia.length,
-    request.status
-  ])
+  }, [dispatch, allMedia.length, request.status])
 
   useEffect(() => {
-    const sentinel =
-      sentinelRef.current
+    const sentinel = sentinelRef.current;
 
     if (
       !sentinel ||
@@ -86,30 +44,22 @@ export function MediaGallery() {
       allMedia.length === 0 ||
       request.status === 'error'
     ) {
-      return
+      return;
     }
 
     const observer =
       new IntersectionObserver(
         ([entry]) => {
-          if (
-            entry?.isIntersecting &&
-            request.status === 'success'
-          ) {
-            void dispatch(
-              fetchNextMediaPage()
-            )
+          if (entry?.isIntersecting && request.status === 'success') {
+            void dispatch(fetchNextMediaPage());
           }
-        },
-        {
-          rootMargin: '300px 0px'
-        }
+        }, { rootMargin: '300px 0px' }
       )
 
-    observer.observe(sentinel)
+    observer.observe(sentinel);
 
     return () => {
-      observer.disconnect()
+      observer.disconnect();
     }
   }, [
     dispatch,
@@ -227,6 +177,7 @@ export function MediaGallery() {
 
           <button
             type="button"
+            className={styles.retryButton}
             onClick={() => {
               void dispatch(
                 fetchNextMediaPage()

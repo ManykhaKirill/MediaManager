@@ -1,6 +1,7 @@
 .card {
   position: relative;
   overflow: hidden;
+  height: fit-content;
   border: 1px solid #d9dde5;
   border-radius: 12px;
   background: #ffffff;
