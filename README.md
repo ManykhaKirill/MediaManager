@@ -1,5 +1,13 @@
 # Media Collection Manager
 
+## Loom Walkthrough
+
+Loom video: [Loom-link](https://www.loom.com/share/9f78a6c11c7d4d8c85be7bc016254249)
+
+Live demo: [Demo-link](https://media-manager-taupe.vercel.app/)
+
+---
+
 ## Tech Stack
 
 - React
@@ -178,8 +186,8 @@ The mock implementation simulates:
 
 - paginated media loading
 - upload progress
-- upload delays
-- upload failures
+- upload delays (~500ms)
+- upload failures (20% rejects on server, 15% occasional failures while fetching media)
 
 The application communicates with the mock layer through an abstraction rather than accessing mock data directly.
 
@@ -249,10 +257,8 @@ Create a production build:
 npm run build
 ```
 
----
+ESlint check:
 
-## Loom Walkthrough
-
-Loom video:
-
-> TODO: Add Loom link
+```bash
+npm run lint
+```
