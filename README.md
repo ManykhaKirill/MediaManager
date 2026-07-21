@@ -72,7 +72,7 @@ src
 - **features** – user scenarios such as uploading and filtering
 - **widgets** – composition of multiple features
 - **pages** – application pages
-- **shared** – reusable utilities, hooks and UI components
+- **shared** – reusable utilities and UI components
 - **mock** – mock API implementation
 
 ---
